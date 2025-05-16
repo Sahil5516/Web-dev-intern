@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coffee Visit - Premium Coffee Experience</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        header {
+            height: 100vh;
+            position: relative;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 30px 100px;
+            animation: fadeInDown 1s ease;
+        }
+
+        .logo {
+            font-size: 35px;
+            font-weight: 700;
+            color: #c7a17a;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            line-height: 1.2;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            transform-style: preserve-3d;
+            transform: perspective(1000px) rotateY(10deg);
+            transition: all 0.5s ease;
+        }
+
+        .logo:hover {
+            transform: perspective(1000px) rotateY(0deg);
+            color: #fff;
+        }
+
+        .menu a {
+            text-decoration: none;
+            color: #fff;
+            font-size: 18px;
+            font-weight: 500;
+            margin: 0 20px;
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .menu a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #c7a17a;
+            bottom: -5px;
+            left: 0;
+            transition: width 0.3s ease;
+        }
+
+        .menu a:hover {
+            color: #c7a17a;
+        }
+
+        .menu a:hover::after {
+            width: 100%;
+        }
+
+        .register a {
+            text-decoration: none;
+            color: #000;
+            font-size: 18px;
+            font-weight: 500;
+            background: #c7a17a;
+            padding: 12px 30px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(199, 161, 122, 0.4);
+        }
+
+        .register a:hover {
+            background: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(199, 161, 122, 0.6);
+        }
+
+        .h-test {
+            position: absolute;
+            top: 50%;
+            left: 5%;
+            right: 55%;
+            transform: translateY(-50%);
+            max-width: 500px;
+            animation: fadeInUp 1s ease;
+            z-index: 2;
+        }
+
+        .h-test span {
+            color: #c7a17a;
+            font-size: 20px;
+            letter-spacing: 2px;
+            display: block;
+            margin-bottom: 20px;
+            animation: pulse 2s infinite;
+        }
+
+        .h-test h1 {
+            font-size: 60px;
+            line-height: 1.2;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .h-test a {
+            text-decoration: none;
+            color: #000;
+            font-size: 18px;
+            font-weight: 500;
+            background: #c7a17a;
+            padding: 15px 40px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            display: inline-block;
+            box-shadow: 0 5px 15px rgba(199, 161, 122, 0.4);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .h-test a::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .h-test a:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(199, 161, 122, 0.6);
+        }
+
+        .h-test a:hover::before {
+            left: 100%;
+        }
+
+        .coffee-cup {
+            position: absolute;
+            right: 5%;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 250px;
+            height: 250px;
+            background: url('https://images.unsplash.com/photo-1511920170033-f8396924c348?ixlib=rb-1.2.1&auto=format&fit=crop&w=634&q=80') no-repeat center/contain;
+            animation: float 6s ease-in-out infinite;
+            filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+            z-index: 1;
+        }
+
+        .coffee-steam {
+            position: absolute;
+            width: 100px;
+            height: 100px;
+            background: url('https://www.transparentpng.com/thumb/coffee/steam-coffee-png-clipart-8.png') no-repeat center/contain;
+            top: -50px;
+            left: 50%;
+            transform: translateX(-50%);
+            opacity: 0.8;
+            animation: steam 4s linear infinite;
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% {
+                transform: translateY(-50%) rotateY(0deg);
+            }
+            50% {
+                transform: translateY(-60%) rotateY(10deg);
+            }
+        }
+
+        @keyframes steam {
+            0% {
+                transform: translateX(-50%) scale(0.8);
+                opacity: 0;
+            }
+            50% {
+                opacity: 0.8;
+            }
+            100% {
+                transform: translateX(-50%) scale(1.2) translateY(-20px);
+                opacity: 0;
+            }
+        }
+
+        .features {
+            padding: 100px 10%;
+            background: #1a120b;
+            text-align: center;
+        }
+
+        .features h2 {
+            font-size: 40px;
+            margin-bottom: 50px;
+            color: #c7a17a;
+        }
+
+        .feature-container {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+        }
+
+        .feature {
+            width: 300px;
+            margin: 20px;
+            padding: 30px;
+            background: rgba(26, 18, 11, 0.8);
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(199, 161, 122, 0.3);
+        }
+
+        .feature img {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+        }
+
+        .feature h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #c7a17a;
+        }
+
+        .feature p {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+
+        @media (max-width: 1024px) {
+            .h-test {
+                right: 5%;
+            }
+
+            .coffee-cup {
+                width: 200px;
+                height: 200px;
+                top: 60%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 20px;
+                flex-direction: column;
+            }
+
+            .menu {
+                margin: 20px 0;
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .menu a {
+                margin: 10px 15px;
+            }
+
+            .h-test {
+                left: 5%;
+                right: 5%;
+                text-align: center;
+            }
+
+            .h-test h1 {
+                font-size: 40px;
+            }
+
+            .coffee-cup {
+                display: none;
+            }
+
+            .feature-container {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <nav>
+            <div class="logo">
+                COFFEE <br> VISIT
+            </div>
+            <div class="menu">
+                <a href="#">Home</a>
+                <a href="#">About</a>
+                <a href="#">Menu</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="register">
+                <a href="#">Register</a>
+            </div>
+        </nav>
+
+        <section class="h-test">
+            <span>MAKE A DAY BETTER WITH COFFEE</span>
+            <h1>Welcome to Premium Coffee Experience</h1>
+            <a href="#">Order Now</a>
+        </section>
+
+        <div class="coffee-cup">
+            <div class="coffee-steam"></div>
+        </div>
+    </header>
+
+    <section class="features">
+        <h2>Why Choose Us</h2>
+        <div class="feature-container">
+            <div class="feature">
+                <img src="https://cdn-icons-png.flaticon.com/512/2936/2936886.png" alt="Premium Quality">
+                <h3>Premium Quality</h3>
+                <p>We source only the finest coffee beans from sustainable farms around the world.</p>
+            </div>
+            <div class="feature">
+                <img src="https://cdn-icons-png.flaticon.com/512/1046/1046857.png" alt="Expert Baristas">
+                <h3>Expert Baristas</h3>
+                <p>Our certified baristas craft each cup with precision and passion.</p>
+            </div>
+            <div class="feature">
+                <img src="https://cdn-icons-png.flaticon.com/512/869/869869.png" alt="Fast Delivery">
+                <h3>Fast Delivery</h3>
+                <p>Get your coffee delivered fresh and hot in under 30 minutes.</p>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const features = document.querySelectorAll('.feature');
+
+            const featureObserver = new IntersectionObserver((entries) => {
+                entries.forEach((entry, index) => {
+                    if (entry.isIntersecting) {
+                        setTimeout(() => {
+                            entry.target.style.opacity = 1;
+                            entry.target.style.transform = 'translateY(0)';
+                        }, index * 200);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            features.forEach(feature => {
+                feature.style.opacity = 0;
+                feature.style.transform = 'translateY(20px)';
+                feature.style.transition = 'all 0.6s ease';
+                featureObserver.observe(feature);
+            });
+        });
+    </script>
+</body>
+
+</html>
